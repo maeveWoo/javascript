@@ -9,8 +9,9 @@
 <h1>Number guessing game</h1>
 <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if
     your guess was too high or too low.</p>
-<label for="guessField">Enter a guess : </label> <input type="text" id="guessField" class="guessField"/>
+<label for="guessField">Enter a guess : </label> <input type="number" min="0" max="100" id="guessField" class="guessField"/>
 <input type="submit" value="Submit guess" class="guessSubmit">
+<input type="button" value="reset" class="guessReset">
 <div class="resultParas">
     <p class="guesses"></p>
     <p class="lastResult"></p>
@@ -28,12 +29,35 @@
     const guessField = document.querySelector('.guessField');
 
     let guessCount = 1;
-    let resetButton;
+    let resetButton = document.querySelector('.guessReset');
+
+    resetButton.style.display = 'none';
+
+    function resetGuess() {
+        location.reload();
+    }
 
     function checkGuess() {
-        alert("끼야앙"); // TODO 기능  구현... 해보기..
+        let userGuessNumber = Number(guessField.value);
+
+        if (randomNumber === userGuessNumber) {
+            alert("정답!")
+            guessSubmit.disabled = true;
+            resetButton.style.display = 'inline-block';
+        } else {
+            guesses.textContent += (userGuessNumber + " ");
+            lastResult.textContent = userGuessNumber;
+
+            if (userGuessNumber < randomNumber) {
+                lowOrHi.textContent = "UP";
+            } else {
+                lowOrHi.textContent = "DOWN";
+            }
+            guessCount += 1;
+        }
     }
 
     guessSubmit.addEventListener('click', checkGuess)
+    resetButton.addEventListener('click', resetGuess)
 </script>
 </html>
