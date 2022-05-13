@@ -46,7 +46,7 @@
             resetButton.style.display = 'inline-block';
         } else {
             guesses.textContent += (userGuessNumber + " ");
-            lastResult.textContent = userGuessNumber;
+            lastResult.textContent = userGuessNumber.toString();
 
             if (userGuessNumber < randomNumber) {
                 lowOrHi.textContent = "UP";
