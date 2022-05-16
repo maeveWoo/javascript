@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            display: inline-block;
+            width: 5em;
+            border: 1px solid deepskyblue;
+            background-color: deepskyblue;
+            color: #ffe;
+            margin: 0.2em;
+        }
+    </style>
+</head>
+<body>
+<h1>Calendar</h1>
+<div>
+    <label for="month">Select month</label>
+    <select id="month">
+        <option value="january">January</option>
+        <option value="february">February</option>
+        <option value="march">March</option>
+        <option value="april">April</option>
+        <option value="may">May</option>
+        <option value="june">June</option>
+        <option value="july">July</option>
+        <option value="august">August</option>
+        <option value="september">September</option>
+        <option value="october">October</option>
+        <option value="november">November</option>
+        <option value="december">December</option>
+    </select>
+</div>
+<div>
+    <h2></h2>
+    <ul>
+    </ul>
+</div>
+<script>
+    const select = document.querySelector('#month');
+    const list = document.querySelector('ul');
+    const h2 = document.querySelector('h2');
+
+    select.onchange = function () {
+        while(list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+        // let listItem = document.querySelector('li');
+        // while(listItem) {
+        //     list.removeChild(listItem);
+        // } : Error 뭐지..? 한칸씩 날라감..
+
+        choseMonth();
+    }
+
+    function choseMonth() {
+        const choice = select.value;
+        let days;
+        switch (choice) {
+            case 'january' :
+                days = 31;
+                break;
+            case 'february' :
+                days = 29;
+                break;
+            case 'march' :
+                days = 31;
+                break;
+            case 'april' :
+                days = 30;
+                break;
+            case 'may' :
+                days = 31;
+                break;
+            case 'june' :
+                days = 30;
+                break;
+            case 'july' :
+                days = 31;
+                break;
+            case 'august' :
+                days = 31;
+                break;
+            case 'september' :
+                days = 30;
+                break;
+            case 'october' :
+                days = 31;
+                break;
+            case 'november' :
+                days = 30;
+                break;
+            case 'december' :
+                days = 31;
+                break;
+        }
+        createCalendar(days, choice);
+    }
+
+    function createCalendar(days, choice) {
+        h2.textContent = (choice.charAt(0).toUpperCase() + choice.slice(1));
+
+        for (let i = 1; i <= days; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = i.toString();
+            list.appendChild(listItem);
+        }
+    }
+
+    choseMonth();
+</script>
+</body>
+</html>

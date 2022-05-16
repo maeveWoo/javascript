@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Looping</title>
+</head>
+<body>
+<h1>Confitional & Looping</h1>
+<div>
+    <h2>Confitional</h2>
+    <label for="weather1">Select the weather type today : </label>
+    <select id="weather1">
+        <option value="sunny">Sunny</option>
+        <option value="rainy">Rainy</option>
+        <option value="snowing">Snowing</option>
+        <option value="overcast">Overcast</option>
+    </select>
+    <p class="weather1"></p>
+
+    <label for="weather2">Select the weather type today: </label>
+    <select id="weather2">
+        <option value="">--Mak a choice--</option>
+        <option value="sunny">Sunny</option>
+        <option value="rainy">Rainy</option>
+        <option value="snowing">Snowing</option>
+        <option value="overcast">Overcast</option>
+    </select>
+    <p class="weather2"></p>
+
+    <label for="theme">Select theme : </label>
+    <select id="theme">
+        <option value="white">White</option>
+        <option value="black">Black</option>
+    </select>
+    <h3>This is  my website</h3>
+</div>
+<script>
+    const select = document.querySelector('select');
+    const para = document.querySelector('p.weather1');
+
+    select.addEventListener('change', setWeather);
+
+    function setWeather() {
+        const choice = select.value;
+
+        if (choice === 'sunny') {
+            para.textContent = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+        } else if (choice === 'rainy') {
+            para.textContent = 'Rain is falling outside; take a rain coat and a brolly, and don\'t stay out for too long.';
+        } else if (choice === 'snowing') {
+            para.textContent = 'The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+        } else if (choice === 'overcast') {
+            para.textContent = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+        } else {
+            para.textContent = '';
+        }
+    }
+</script>
+<script>
+    const select2 = document.querySelector('#weather2');
+    const para2 = document.querySelector('.weather2');
+
+    select2.addEventListener('change', setWeather2);
+
+    function setWeather2() {
+        const choice = select2.value;
+        let msg;
+        switch (choice) {
+            case 'sunny' :
+                msg = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+                break;
+            case 'rainy' :
+                msg = 'Rain is falling outside; take a rain coat and a brolly, and don\'t stay out for too long.';
+                break;
+            case 'snowing' :
+                msg = 'The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+                break;
+            case 'overcast' :
+                msg = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+                break;
+            default :
+                msg = '';
+        }
+        para2.textContent = msg;
+    }
+</script>
+<script>
+    const select3 = document.querySelector('#theme');
+    const html = document.querySelector('html');
+    document.body.style.padding = '10px';
+
+    function update(bgColor, textColor) {
+        html.style.backgroundColor = bgColor;
+        html.style.color = textColor;
+    }
+
+    select3.onchange = function () {
+        (select3.value === 'black') ? update('black', 'white') : update('white', 'black');
+    }
+</script>
+</body>
+</html>
