@@ -360,3 +360,10 @@ video.addEventListener('click', e => {
 > event.target 이벤트의 대상(가장 안쪽 요소)이었던 요소를 가져오는 데 사용하고 있다. 만약, 이 이벤트를 처리한 요소에 엑세스 하려면 event.currentTarget 확인
 
 [참고](event.html)
+
+---
+
+## 추가 자료
+- [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+- [Event order](https://www.quirksmode.org/js/events_order.html)
+- [Event accessing](https://www.quirksmode.org/js/events_access.html)
