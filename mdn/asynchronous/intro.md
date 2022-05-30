@@ -93,3 +93,72 @@ makeGreeting()은 동기 함수이다. 호출자는 함수가 반환된기 전�
 </body>
 </html>
 ```
+
+### 콜백
+이벤트 핸들러는 콜백의 특정 유형이다. 콜백은 적절한 때에 호출되어 다른 함수에 단지 함수가 전달되는 것이다.
+콜백은 JS에서 구현된 비동기 기능의 주방법으로 사용된다.
+
+그러나, 콜백을 기반으로 하는 코드는 콜백 자체가 콜백을 수락하는 함수를 호출해야 할 때 이해하기 어려울 수 있다.
+아래 예시는 많은 단계의 비동기 함수를 거치는 연산이 필요한 일반적인 상황이다.
+
+```javascript
+function doStep1(init) {
+    return init + 1;
+}
+
+function doStep2(init) {
+    return init + 2;
+}
+
+function doStep3(init) {
+    return init + 3;
+}
+
+function doOperation() {
+    let result = 0;
+    result = doStep1(result);
+    result = doStep2(result);
+    result = doStep3(result);
+    console.log(`result: ${result}`);
+}
+
+doOperation();
+```
+위 동기 코드를 굉장히 간단하다. 그러나 저 단계들을 콜백을 사용하면 어떻게 될까?
+
+```javascript
+function doStep1(init, callback) {
+    const result = init + 1;
+    callback(result);
+}
+
+function doStep2(init, callback) {
+    const result = init + 2;
+    callback(result);
+}
+
+function doStep3(init, callback) {
+    const result = init + 3;
+    callback(result);
+}
+
+function doOperation() {
+    doStep1(0, result1 => {
+        doStep2(result1, result2 => {
+           doStep3(result2, result3 => {
+              console.log(`result: ${result3}`); 
+           });
+        });
+    });
+}
+
+doOperation();
+```
+사용자는 콜백 내부에서 콜백을 호출해야 한다. "doOperation()"함수는 읽고, 디버깅하기 훨씬 어려운 코드로 복잡해졌다.
+
+이는 종종 "callback hell"또는 "pyramid of doom"라고 불린다.
+
+이처럼 복잡한 콜백은, 에러를 다룰때 역시 어려울 수 있다. : 종종 최상위 레벨에서 에러를 한번에 다루기보다, 각 레벨에서 에러를 다뤄야한다.
+
+이런 이유로, 최신 비동기 API는 콜백을 사용하지 않는다.
+대신, JS에서 비동기 프로그래밍의 기본은 "Promise"이다.
