@@ -9,9 +9,9 @@ Object-oriented programming은 C++, Java를 포함한 많은 프로그래밍 언
 
 다음 장에서 JS에서 OOP 구형을 더 쉽게 만들어주는 추가적인 특징을 볼 것이다.
 
-| 선행 | JS 함수의 이해, JS 기본, OOJS 기본(JS Object, Object prototype) |
-|--|---|
-| 목표 | class 기반 oop 기본 컨셉 이해 |
+| 선행  | JS 함수의 이해, JS 기본, OOJS 기본(JS Object, Object prototype) |
+|-----|---|
+| 목표  | class 기반 oop 기본 컨셉 이해 |
 
 OOP는 객체의 컬렉션으로 시스템 모델링에대한 것이다. 
 각 객체는 시스템의 어떤 부분의 관점을 표현한다.
