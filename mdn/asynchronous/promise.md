@@ -103,4 +103,53 @@ fetchPromise
 
 에러를 처리하기 위해서, Promise객체는 "catch()"메서드를 제공한다. 얘는 "then()"과 비슷하다.
 "catch()"메서드는 호출해서 핸들러 함수에서 전달할 수 있다.
-그러나, 핸들러가 "then()"
+그러나,비동기 연산이 성공되면, 핸들러가 "then()"에 전달되어 호출되고, 실패할 경우 핸들러는 "catch()"로 전달되어 호출된다.
+
+만약 promise 체인의 끝에 "catch()"를 추가하면, 어떤 비동기 함수 호출의 실패가 있다먄 "catch()"가 호출된다.
+따라서, 사용자는 많은 연속적인 비동기 함수호출오 연산을 구현할 수 있다. 그리고, 한 장소에서 전체 에러를 다룰 수 있다.
+
+연습해보장
+```javascript
+const fetchPromise = fetch('bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+
+fetchPromise
+    .then( response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }   
+        return response.json();
+    })
+    .then( json => {
+        console.log(json[0].name);
+    })
+    .catch( error => {
+        console.error(`Could not get products: ${error}`);
+    });
+```
+
+### Promise 전문용어
+Promise는 구체적인 전문용어와 함께하는데, 이를 명확히하는것은 가치가 있다.
+
+먼저, Promise는 세가지 상태가 있을 수 있다.
+1. pending : Promise가 생성이되면, Promise와 연관된 비동기함수는 아직 성공이나 실패하지 않았다. 
+이는 "fetch()" 호출이 반환되지않은 상태이고, 요청이 만들어지는 중이다.
+2. fulfilled : 비동기함수가 성공했다. Promise가 fulfilled일때, Promise의 "then" 핸들러가 호출된다.
+3. rejected : 비동기함수가 실패했다. Promise가 거절되면, Promise의 "catch()" 핸들러가 호출된다.
+
+"성공", "실패"의 의미는 API에 달려있다.,예를 들어, "fetch()"에서 404 Not Found 같은 에러를 서버가 반환하면, 요청이 성공했다고 판단하지만.
+네트워크 에러가 보내진 요청을 막는다면, 성공이라 판단하지 않는다.
+
+가끔 "fulfilled"와 "rejected" 모두를 칭하기 위해서 "settled"라는 용어를 사용한다.
+
+Promise는 "settled"이거나, "locked in" 상태일때, 다른 Promise의 상태를 따라가기 위해 해체된다.
+
+### 여러 Promise 연결하기
+사용자가 많은 비동기 함수로 구성된 연산이 필요로할때, Promise 체인을 쓴다. 그리고 사용자는 각각의 Promise는 다음 Promise를 시작하기 전에 완료되야한다. 
+그러나 아마도 사용자는 비동기 함수 호출을 결합하는 방법을 필요로 할 수 있다. Promise API는 이 기능을 지원해준다.
+
+가끔, 시용자는 모든 Promise가 fulfill 상태일때가 필요하다. 그러나 Promise들은 각자에게 의존하지 않는다. 
+
+이런 경우에, 모두 함께 시작한 다음 모두 완료(fulfill)되면 알려지는게 더 효율적이다.
+이 "Promise.all()" 메서드는 사용자가 필요한 것이다. "Promise.all()"은 "Promise"의 배열을 받아서, 하나의 Promise를 반환한다.
+
+
