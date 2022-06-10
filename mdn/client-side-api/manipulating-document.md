@@ -194,6 +194,7 @@ para.setAttribute('class', 'highlight');
 
 JS를 이용해 컨텐츠를 만드는 것은 의미가 없다. JS를 이용하지 않고, HTML에 작성하는 것이 좋다. (SEO에서 읽을 수 없음)
 
+:grey_question: React 같은 애들은.. SEO우째 맞추누..?
 ## 동적인 쇼핑 목록
 - 숙제..
 
