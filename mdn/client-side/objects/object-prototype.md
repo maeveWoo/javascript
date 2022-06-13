@@ -81,7 +81,7 @@ Object.getPrototypeOf(mtObject);
 
 "Object.prototype"의 프로토타입은 "null"이기라, 프로토타입 체인의 끝이다.
 
-![prototype type chain](../img/myobject-prototype-chain.svg)
+![prototype type chain](../../img/myobject-prototype-chain.svg)
 
 객체의 프로토타입은 항상 "Object.prototype"이 아니다.
 ```javascript
@@ -99,7 +99,7 @@ do {
 "myDate"의 프로토타입은 "Date.prototype"객체로 보여준다.
 그리고 이것의 프로토타입은 "Object.protype"이다.
 
-![mydate prototype type chain](../img/mydate-prototype-chain.svg)
+![mydate prototype type chain](../../img/mydate-prototype-chain.svg)
 
 사실, "myDate2.getMonth()"같은 비슷한 메서드를 호출할때, "Date.prototype"의 메소드를 호출하는 것이다.
 

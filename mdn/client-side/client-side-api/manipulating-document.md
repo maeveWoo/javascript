@@ -42,7 +42,7 @@
 ```
 
 DOM은 아래 사진처럼 볼 수 있다.
-![dom-tree](../img/dom-screenshot.png)
+![dom-tree](../../img/dom-screenshot.png)
 
 > 이런 DOM 트리 다이어그램은 [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/)로 생성할 수 있다.
 
